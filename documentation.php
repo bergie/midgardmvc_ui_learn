@@ -239,7 +239,6 @@ class midgardmvc_ui_learn_documentation
         $method_documentation['arguments'] = $arguments;
         $method_documentation['signature'] = $methodsignature;
         $method_documentation['documentation'] = midgardmvc_ui_learn_documentation::render_docblock($method->getDocComment());
-        
         return $method_documentation;
     }           
 
@@ -255,7 +254,6 @@ class midgardmvc_ui_learn_documentation
             $class_documentation['extends_url'] = '';
             //$class_documentation['extends_url'] = midgardmvc_core::get_instance()->dispatcher->generate_url('midgardmvc_documentation_class', array('class' => $parent_class->getName()));
         }
-        
         return $class_documentation;
     }
 
@@ -269,8 +267,9 @@ class midgardmvc_ui_learn_documentation
     {
         if (empty($docblock))
         {
-            return $docblock;
+            return '';
         }
+
         // Just to be sure normalize newlines
         $docblock = preg_replace("/\n\r|\r\n|\r/","\n", $docblock);
         // Strip start and end of comment

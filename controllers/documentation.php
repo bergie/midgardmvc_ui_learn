@@ -18,7 +18,7 @@ class midgardmvc_ui_learn_controllers_documentation
         $this->request = $request;
         $this->midgardmvc = midgardmvc_core::get_instance();
     }
-    
+
     private function prepare_component($component)
     {
         $this->data['component'] = $component;
@@ -84,8 +84,32 @@ class midgardmvc_ui_learn_controllers_documentation
 
     public function get_index(array $args)
     {
+        $components = $this->midgardmvc->component->get_components();
+        $this->data['components'] = array();
+        foreach ($components as $component)
+        {
+            $component_info = array();
+            $component_info['name'] = $component->name;
+            $component_info['url'] = $this->midgardmvc->dispatcher->generate_url('midgardmvc_learn_component', array('component' => $component->name), $this->request);
+            $this->data['components'][] = $component_info;
+        }
+
+        $this->data['contentrepositories'] = array();
+        if (extension_loaded('midgard2'))
+        {
+            $repo = array();
+            $repo['name'] = 'Midgard2';
+            $repo['url'] = $this->midgardmvc->dispatcher->generate_url('midgardmvc_learn_contentrepository', array('repository' => 'midgard2'), $this->request);
+            $this->data['contentrepositories'][] = $repo;
+        }
+    }
+
+    public function get_component(array $args)
+    {
         //$this->midgardmvc->authorization->require_user();
         $this->prepare_component($args['component'], $this->data);
+
+        $this->data['description'] = $this->component->get_description();
 
         $this->data['files'] = $this->list_directory(MIDGARDMVC_ROOT . "/{$this->data['component']}/documentation");
 
@@ -97,6 +121,16 @@ class midgardmvc_ui_learn_controllers_documentation
                 'label' => 'Routes',
                 'path' => 'routes/',
             );
+        }
+
+        $this->data['classes'] = array();
+        $classes = $this->component->get_classes();
+        foreach ($classes as $class)
+        {
+            $class_info = array();
+            $class_info['name'] = $class;
+            $class_info['url'] = $this->midgardmvc->dispatcher->generate_url('midgardmvc_learn_class', array('class' => $class), $this->request);
+            $this->data['classes'][] = $class_info;
         }
     }
 
@@ -174,7 +208,8 @@ class midgardmvc_ui_learn_controllers_documentation
         //$this->midgardmvc->authorization->require_user();
 
         $this->data['class'] = $args['class'];
-        if (!class_exists($this->data['class']))
+        if (   !class_exists($this->data['class'])
+            && !interface_exists($this->data['class']))
         {
             throw new midgardmvc_exception_notfound("Class {$this->data['class']} not defined");
         }
