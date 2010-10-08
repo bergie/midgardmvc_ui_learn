@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Route</th>
+            <th>Controller</th>
+            <th>Template</th>
+            <th>Content template</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr tal:repeat="route midgardmvc_core/routes">
+            <td><code tal:content="route/path">Route</code></td>
+            <td><a href="#" tal:attributes="href route/controller_url"><span class="controller" tal:content="route/controller">Controller</span>:<span class="action" tal:content="route/action">action</span></a></td>
+            <td tal:content="route/template_aliases/root">Main template</td>
+            <td tal:content="route/template_aliases/content">Content template</td>
+        </tr>
+    </tbody>
+</table>

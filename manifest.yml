@@ -1,0 +1,37 @@
+component: midgardmvc_ui_learn
+version: 10.12.0devel
+process_injector: midgardmvc_ui_learn_injector
+authors:
+    bergie:
+        name: Henri Bergius
+        email: henri.bergius@iki.fi
+        url: http://bergie.iki.fi/
+routes:
+    midgardmvc_documentation_show:
+        controller: midgardmvc_ui_learn_controllers_documentation
+        action: show
+        path: '/mgd:documentation@'
+        root_only: true
+        template_aliases: 
+            content: mul-show-documentation_file
+    midgardmvc_documentation_index:
+        controller: midgardmvc_ui_learn_controllers_documentation
+        action: index
+        path: '/mgd:documentation/{$component}'
+        root_only: true
+        template_aliases: 
+            content: mul-show-documentation_index
+    midgardmvc_documentation_routes:
+        controller: midgardmvc_ui_learn_controllers_documentation
+        action: routes
+        path: '/mgd:documentation/{$component}/routes'
+        root_only: true
+        template_aliases: 
+            content: mul-show-documentation_routes
+    midgardmvc_documentation_class:
+        controller: midgardmvc_ui_learn_controllers_documentation
+        action: class
+        path: '/mgd:documentation/class/{$class}'
+        root_only: true
+        template_aliases: 
+            content: mul-show-documentation_class
