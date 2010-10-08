@@ -42,7 +42,7 @@ routes:
     #    root_only: true
     #    template_aliases: 
     #        content: mul-show-documentation_file
-    midgardmvc_documentation_routes:
+    midgardmvc_learn_routes:
         controller: midgardmvc_ui_learn_controllers_documentation
         action: routes
         path: '/mgd:documentation/{$component}/routes'

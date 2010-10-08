@@ -197,7 +197,7 @@ class midgardmvc_ui_learn_controllers_documentation
         $this->data['routes'] = array();
         foreach ($routes as $route)
         {
-            $route->controller_url = $this->midgardmvc->dispatcher->generate_url('midgardmvc_documentation_class', array('class' => $route->controller), $this->request);
+            $route->controller_url = $this->midgardmvc->dispatcher->generate_url('midgardmvc_learn_class', array('class' => $route->controller), $this->request);
             $route->controller_url .= "#action_{$route->action}";
             $this->data['routes'][] = $route;
         }
