@@ -239,6 +239,17 @@ class midgardmvc_ui_learn_controllers_documentation
             }
             $this->data['methods'][] = $method_docs;
         }
+
+        midgardmvc_core::get_instance()->head->add_link
+        (
+            array
+            (
+                'rel'   => 'stylesheet',
+                'type'  => 'text/css',
+                'media' => 'screen',
+                'href'  => MIDGARDMVC_STATIC_URL . '/midgardmvc_ui_learn/learn.css',
+            )
+        );
     }
 }
 ?>

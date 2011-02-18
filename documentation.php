@@ -251,8 +251,7 @@ class midgardmvc_ui_learn_documentation
         if ($parent_class)
         {
             $class_documentation['extends'] = $parent_class->getName();
-            $class_documentation['extends_url'] = '';
-            //$class_documentation['extends_url'] = midgardmvc_core::get_instance()->dispatcher->generate_url('midgardmvc_documentation_class', array('class' => $parent_class->getName()));
+            $class_documentation['extends_url'] = midgardmvc_core::get_instance()->dispatcher->generate_url('midgardmvc_learn_class', array('class' => $parent_class->getName()), '/');
         }
         return $class_documentation;
     }

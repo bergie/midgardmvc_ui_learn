@@ -1,0 +1,17 @@
+.midgardmvc_ui_learn dt {
+    font-weight: bold;
+}
+
+.midgardmvc_ui_learn dd {
+    margin-left: 2em;
+    font-weight: normal;
+    margin-bottom: 1em;
+}
+
+.midgardmvc_ui_learn .signals ul,
+.midgardmvc_ui_learn .signals li {
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-bottom: 1em;
+}
